@@ -32,10 +32,6 @@ if (navigator.mediaDevices.getUserMedia) {
 }
 
 // Notification Access
-Notification.requestPermission(status => {
-    console.log('Notification permision status: ', status)
-})
-
 const options = {
     body: 'Congratulation, notification success',
     vibrate: [100, 50, 100],
@@ -47,11 +43,13 @@ const options = {
 }
 
 function notifyMe() {
-    if(Notification.permission === 'granted'){
-        navigator.serviceWorker.getRegistration().then(reg => {
-            reg.showNotification('Hello There', options)
-        })
-    }
+    Notification.requestPermission(function(result) {
+        if(result === 'granted'){
+            navigator.serviceWorker.ready.then(function(reg){
+                reg.showNotification('Hello There', options)
+            })
+        }
+    })
 }
 
 // Speaker
