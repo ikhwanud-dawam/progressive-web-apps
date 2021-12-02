@@ -30,3 +30,38 @@ if (navigator.mediaDevices.getUserMedia) {
             console.log("Something went wrong!");
         });
 }
+
+// Notification Access
+Notification.requestPermission(status => {
+    console.log('Notification permision status: ', status)
+})
+
+const options = {
+    body: 'Congratulation, notification success',
+    vibrate: [100, 50, 100],
+    data: {primaryKey: 1},
+    actions: [
+        {action: 'go', title: 'Go to the site'},
+        {action: 'close', title: 'No thank you'}
+    ]
+}
+
+function notifyMe() {
+    if(Notification.permission === 'granted'){
+        navigator.serviceWorker.getRegistration().then(reg => {
+            reg.showNotification('Hello There', options)
+        })
+    }
+}
+
+// Speaker
+function playSound(){
+    var audio = document.getElementById("audio")
+    audio.volume = 0.1
+    audio.play()
+}
+
+function stopSound(){
+    var audio = document.getElementById("audio")
+    audio.pause()
+}
