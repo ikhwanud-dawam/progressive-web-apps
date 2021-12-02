@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Responsive -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Title -->
+    <title>Progressive Web App</title>
+
+    <!-- Meta Tags required for	Progressive Web App -->
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+    <!-- Manifest File link -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Created by Nabil & Dawam</h1>
+    </header>
+
+    <main class="container">
+        <!-- Geo Access -->
+        <div class="geolocator">
+            <h2>Geolocator</h2>
+            <p>Click the button to get your coordinates.</p>
+            <button onclick="getLocation()">Click me!</button>
+            <p id="geo"></p>
+        </div>
+        <!-- Camera Access -->
+        <div class="camera">
+            <h2>Camera Access</h2>
+            <video autoplay="true" id="cameraElement"></video>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+    <script src="service-worker.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Script for Service Worker
+        window.addEventListener('load', () => {
+            registerSW()
+        });
+
+        // Register the Service Worker
+        async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    await navigator
+                        .serviceWorker
+                        .register('service-worker.js');
+                } catch (e) {
+                    console.log('SW registration failed');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
