@@ -34,10 +34,27 @@
             <button onclick="getLocation()">Click me!</button>
             <p id="geo"></p>
         </div>
+
         <!-- Camera Access -->
         <div class="camera">
             <h2>Camera Access</h2>
             <video autoplay="true" id="cameraElement"></video>
+        </div>
+
+        <!-- Notification -->
+        <div class="divider">
+            <h2>Notification</h2>
+            <button onclick="notifyMe()">Notify Me !</button>
+        </div>
+
+        <!-- Speaker -->
+        <div class="divider">
+            <h2>Speaker</h2>
+            <button onclick="playSound()">Play beat !</button>
+            <button onclick="stopSound()">Pause beat !</button>
+            <audio id="audio">
+                <source src="resources/audio.wav" type="audio/wav">
+            </audio>
         </div>
     </main>
 
