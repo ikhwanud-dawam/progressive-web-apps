@@ -1,7 +1,7 @@
 {
 	"name":"PWA Tutorial",
 	"short_name":"PWA",
-	"start_url":"/?home=true",
+	"start_url":"/progressive-web-apps",
 	"display":"standalone",
 	"background_color":"#5900b3",
 	"theme_color":"black",
@@ -10,7 +10,7 @@
 	"icons":[
 	{
 	"src":"images/pwa-192x192.png",					
-	"sizes":"128x128",
+	"sizes":"192x192",
 	"type":"image/png"
 	},
 	{
