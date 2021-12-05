@@ -39,15 +39,22 @@ Notification.requestPermission(status => {
 const options = {
     body: 'Congratulation, notification success',
     vibrate: [100, 50, 100],
-    data: {primaryKey: 1},
-    actions: [
-        {action: 'go', title: 'Go to the site'},
-        {action: 'close', title: 'No thank you'}
+    data: {
+        primaryKey: 1
+    },
+    actions: [{
+            action: 'go',
+            title: 'Go to the site'
+        },
+        {
+            action: 'close',
+            title: 'No thank you'
+        }
     ]
 }
 
 function notifyMe() {
-    if(Notification.permission === 'granted'){
+    if (Notification.permission === 'granted') {
         navigator.serviceWorker.getRegistration().then(reg => {
             reg.showNotification('Hello There', options)
         })
@@ -55,13 +62,28 @@ function notifyMe() {
 }
 
 // Speaker
-function playSound(){
+function playSound() {
     var audio = document.getElementById("audio")
     audio.volume = 0.1
     audio.play()
 }
 
-function stopSound(){
+function stopSound() {
     var audio = document.getElementById("audio")
     audio.pause()
+}
+
+//Bluetooth
+function getBluetoothAccess() {
+    navigator.bluetooth.requestDevice({
+            filters: [{
+                services: ['battery_service']
+            }]
+        })
+        .then(device => {
+            console.log(device.name)
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
