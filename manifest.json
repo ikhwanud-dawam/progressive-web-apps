@@ -1,9 +1,9 @@
 {
-	"name":"PWA Tutorial",
+	"name":"PWA Test",
 	"short_name":"PWA",
 	"start_url":"./",
 	"display":"standalone",
-	"background_color":"#5900b3",
+	"background_color":"#262626",
 	"theme_color":"black",
 	"scope": ".",
 	"description":"This is a PWA tutorial.",
