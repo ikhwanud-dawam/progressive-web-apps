@@ -1,11 +1,11 @@
 {
 	"name":"PWA Test",
 	"short_name":"PWA",
-	"start_url":"./",
+	"start_url":"https://ikhwanud-dawam.github.io/progressive-web-apps",
 	"display":"standalone",
 	"background_color":"#262626",
 	"theme_color":"black",
-	"scope": ".",
+	"scope": "/",
 	"description":"This is a PWA tutorial.",
 	"icons":[
 	{
