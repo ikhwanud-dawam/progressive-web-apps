@@ -25,7 +25,9 @@ function cameraOn() {
                 video: {
                     width: 640,
                     height: 480,
-                    facingMode: "environment"
+                    facingMode: {
+                        exact: 'environment'
+                    }
                 }
             })
             .then(function (stream) {
