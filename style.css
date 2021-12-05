@@ -21,10 +21,9 @@ body {
 
 .camera {
   border: 5px#333 solid;
-}
-
-#videoElement {
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {

@@ -19,16 +19,22 @@ function showPosition(position) {
 // Camera Access
 let camera = document.querySelector("#cameraElement");
 
-if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({
-            video: true
-        })
-        .then(function (stream) {
-            camera.srcObject = stream;
-        })
-        .catch(function (err) {
-            console.log("Something went wrong!");
-        });
+function cameraOn() {
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({
+                video: {
+                    width: 640,
+                    height: 480,
+                    facingMode: "environment"
+                }
+            })
+            .then(function (stream) {
+                camera.srcObject = stream;
+            })
+            .catch(function (err) {
+                console.log("Something went wrong!");
+            });
+    }
 }
 
 // Notification Access
