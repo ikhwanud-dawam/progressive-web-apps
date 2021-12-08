@@ -83,6 +83,17 @@ function stopSound() {
     audio.pause()
 }
 
+// Contact Book
+function openContact(){
+    const contacs = await navigator.contacs.select(['name', 'email'], {multiple: true})
+
+    if(!contacs.length){
+        return 
+    }
+
+    populateRecipents(contacs)
+}
+
 //Bluetooth
 function getBluetoothAccess() {
     navigator.bluetooth.requestDevice({
@@ -97,3 +108,4 @@ function getBluetoothAccess() {
             console.error(error);
         });
 }
+
