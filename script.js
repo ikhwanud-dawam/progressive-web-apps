@@ -24,10 +24,10 @@ function cameraOn() {
         navigator.mediaDevices.getUserMedia({
                 video: {
                     width: {
-                        ideal: 100
+                        ideal: 200
                     },
                     height: {
-                        ideal: 100
+                        ideal: 200
                     },
                     facingMode: {
                         exact: 'environment'
