@@ -1,5 +1,5 @@
 # Progressive Web App
-This is an example for PWA test for test some features on mobile or desktop
+This is an example PWA for testing some features on mobile or desktop
 
 ## PWA feature test
 1. Geolocator
