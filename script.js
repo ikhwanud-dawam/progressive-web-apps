@@ -96,13 +96,25 @@ if(supported == false){
 }
 
 async function selectContact(){
-    const contacts = await navigator.contacts.select(['name'], {multiple: true})
+    var contacts = await navigator.contacts.select(['name'], {multiple: true})
+
+    if(contacts.length){
+        renderResults(contacts)
+
+        document.getElementById('del').removeAttribute('hidden')
+        var del = document.getElementById("btn-del")
+        del.addEventListener('click', () => {
+            var el = document.getElementById("result")
+
+            while(el){
+                el.removeChild(el.childNodes[0])
+            }
+        })
+    }
 
     if(!contacts.length){
         return
     }
-
-    renderResults(contacts)
 }
 
 function renderResults(contacts){
