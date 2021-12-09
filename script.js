@@ -87,7 +87,9 @@ function stopSound() {
 const supported = ('contacts' in navigator && 'ContactManager' in window)
 const result = document.getElementsByClassName("result")
 
-if(!supported){
+console.log(supported)
+
+if(supported == false){
     var notSupp = document.getElementById("not-supp")
     notSupp.removeAttribute('hidden')
     console.log("not supp")
