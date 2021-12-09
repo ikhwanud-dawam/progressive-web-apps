@@ -66,8 +66,11 @@
         <!-- Contact Book -->
         <div class="divider">
             <h2>Contact Book</h2>
-            <button onclick="openContact()">Open Contact Book</button>
-            <div class="result"></div>
+            <div id="not-supp" hidden>
+                <h3 style="color: red;">Not Supported</h3>
+            </div>
+            <button onclick="selectContact()">Open Contact Book</button>
+            <div id="result"></div>
         </div>
 
         <!-- Fingerprint -->

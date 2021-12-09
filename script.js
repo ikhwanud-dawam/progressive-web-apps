@@ -84,35 +84,32 @@ function stopSound() {
 }
 
 // Contact Book
+const supported = ('contacts' in navigator && 'ContactManager' in window)
 const result = document.getElementsByClassName("result")
 
-async function openContact(){
-    const props = ['name', 'email', 'tel', 'addess', 'icon']
-    const opts = {multiple: true}
-
-    try{
-        const contacts = await navigator.contacts.select(props, opts)
-        renderResult(contacts)
-    } catch(e){
-        console.log(e)
-    }
+if(!supported){
+    var notSupp = document.getElementById("not-supp")
+    notSupp.removeAttribute('hidden')
+    console.log("not supp")
 }
 
-function renderResult(contacs){
-    contacs.forEach((contact) => {
-        const line = []
-        if(contact.name) line.push('<b>Name:</b> ${contact.name.join(', ')}')
-        if(contact.email) line.push('<b>email:</b> ${contact.email.join(', ')}')
-        if(contact.tel) line.push('<b>tel:</b> ${contact.tel.join(', ')}')
-        if(contact.address){
-            contact.address.forEach((address) => {
-                line.push('<b>Address:</b> ${JSON.stringify(address)}')
-            })
-        }
+async function selectContact(){
+    const contacts = await navigator.contacts.select(['name'], {multiple: true})
 
-        const li = document.createElement('li')
-        li.innerHTML = line.join('<br>')
-        result.appendChild(li)
+    if(!contacts.length){
+        return
+    }
+
+    renderResults(contacts)
+}
+
+function renderResults(contacts){
+    contacts.forEach(contact => {
+        var node = document.createElement('li')
+        var textNode = document.createTextNode(contact)
+        node.appendChild(textNode)
+
+        document.getElementById('result').appendChild(node)
     });
 }
 
