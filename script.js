@@ -104,6 +104,7 @@ async function selectContact(){
         document.getElementById('del').removeAttribute('hidden')
         var del = document.getElementById("btn-del")
         del.addEventListener('click', () => {
+            document.getElementById('del').setAttribute('hidden', true)
             var el = document.getElementById("result")
 
             while(el){
