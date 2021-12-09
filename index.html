@@ -82,8 +82,11 @@
         </div>
 
         <!-- Face Detection -->
-        <div class="divider">
+        <div class="divider face-detection">
             <h2>Face Detection</h2>
+            <video id="video" autoplay style="display: none"></video>
+            <canvas id="canvas" width="500px" height="500px"></canvas>
+            <button onclick="setupCamera()">Activate</button>
         </div>
 
         <!-- Cellular Access -->
@@ -107,6 +110,8 @@
 
     </footer>
     <script src=" service-worker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
     <script src="script.js"></script>
     <script>
         // Script for Service Worker

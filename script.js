@@ -89,16 +89,18 @@ const result = document.getElementsByClassName("result")
 
 console.log(supported)
 
-if(supported == false){
+if (supported == false) {
     var notSupp = document.getElementById("not-supp")
     notSupp.removeAttribute('hidden')
     console.log("not supp")
 }
 
-async function selectContact(){
-    var contacts = await navigator.contacts.select(['name'], {multiple: true})
+async function selectContact() {
+    var contacts = await navigator.contacts.select(['name'], {
+        multiple: true
+    })
 
-    if(contacts.length){
+    if (contacts.length) {
         renderResults(contacts)
 
         document.getElementById('del').removeAttribute('hidden')
@@ -106,18 +108,18 @@ async function selectContact(){
         del.addEventListener('click', () => {
             var el = document.getElementById("result")
 
-            while(el){
+            while (el) {
                 el.removeChild(el.childNodes[0])
             }
         })
     }
 
-    if(!contacts.length){
+    if (!contacts.length) {
         return
     }
 }
 
-function renderResults(contacts){
+function renderResults(contacts) {
     contacts.forEach(contact => {
         var node = document.createElement('li')
         var textNode = document.createTextNode(contact.name)
@@ -126,6 +128,58 @@ function renderResults(contacts){
         document.getElementById('result').appendChild(node)
     });
 }
+
+//Face Detection
+
+const video = document.getElementById('video')
+let model;
+const canvas = document.getElementById('canvas')
+let ctx = canvas.getContext('2d')
+
+const setupCamera = () => {
+    navigator.mediaDevices.getUserMedia({
+            video: {
+                width: {
+                    ideal: 400
+                },
+                height: {
+                    ideal: 400
+                }
+            },
+            audio: false
+        })
+        .then(stream => {
+            video.srcObject = stream
+        })
+}
+const detectFaces = async () => {
+    const prediction = await model.estimateFaces(video, false)
+    // console.log(prediction)
+
+    ctx.drawImage(video, 0, 0, 400, 400)
+
+    prediction.forEach(pred => {
+        ctx.beginPath()
+        ctx.lineWidth = '4'
+        ctx.strokeStyle = 'blue'
+        ctx.rect(
+            pred.topLeft[0],
+            pred.topLeft[1],
+            pred.bottomRight[0] - pred.topLeft[0],
+            pred.bottomRight[1] - pred.topLeft[1],
+        )
+        ctx.stroke()
+
+        ctx.fillStyle = 'red'
+        pred.landmarks.forEach(landmark => {
+            ctx.fillRect(landmark[0], landmark[1], 5, 5)
+        })
+    })
+}
+video.addEventListener('loadeddata', async () => {
+    model = await blazeface.load()
+    setInterval(detectFaces, 100)
+})
 
 //Bluetooth
 function getBluetoothAccess() {
@@ -141,4 +195,3 @@ function getBluetoothAccess() {
             console.error(error);
         });
 }
-

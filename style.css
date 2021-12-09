@@ -19,7 +19,8 @@ body {
   align-items: center;
 }
 
-.camera {
+.camera,
+.face-detection {
   border: 5px#333 solid;
   display: flex;
   flex-direction: column;
