@@ -106,7 +106,7 @@ async function selectContact(){
 function renderResults(contacts){
     contacts.forEach(contact => {
         var node = document.createElement('li')
-        var textNode = document.createTextNode(contact)
+        var textNode = document.createTextNode(contact.name)
         node.appendChild(textNode)
 
         document.getElementById('result').appendChild(node)
