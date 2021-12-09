@@ -84,7 +84,7 @@ function stopSound() {
 }
 
 // Contact Book
-const supported = ('contacts' in navigator && 'ContactManager' in window)
+const supported = ('contacts' in navigator || 'ContactManager' in window)
 const result = document.getElementsByClassName("result")
 
 console.log(supported)
@@ -108,7 +108,7 @@ async function selectContact(){
 function renderResults(contacts){
     contacts.forEach(contact => {
         var node = document.createElement('li')
-        var textNode = document.createTextNode(contact.name)
+        var textNode = document.createTextNode(JSON.parse(contact.name))
         node.appendChild(textNode)
 
         document.getElementById('result').appendChild(node)
