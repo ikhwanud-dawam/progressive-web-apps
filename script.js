@@ -157,7 +157,7 @@ const detectFaces = async () => {
     const prediction = await model.estimateFaces(video, false)
     // console.log(prediction)
 
-    ctx.drawImage(video, 0, 0, 400, 400)
+    ctx.drawImage(video, 0, 0, 300, 300)
 
     prediction.forEach(pred => {
         ctx.beginPath()
