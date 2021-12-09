@@ -16,3 +16,4 @@ This is an example for PWA test for test some features on mobile or desktop
 12. (added later)
 
 ## Installable
+both on Mobile or Desktop (Chrome)
