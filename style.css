@@ -12,6 +12,10 @@ body {
   letter-spacing: 1px;
 }
 
+header {
+  margin-top: 30px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
