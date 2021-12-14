@@ -79,6 +79,7 @@
         <!-- Fingerprint -->
         <div class="divider">
             <h2>Fingerprint</h2>
+            <button onclick="createCred()">Create Credential</button>
         </div>
 
         <!-- Face Detection -->
@@ -92,11 +93,19 @@
         <!-- Cellular Access -->
         <div class="divider">
             <h2>Cellular Access</h2>
+            <button onclick="checkConn()">Check Connection</button>
+            <h3 id="conn-type"></h3>
+            <h3 id="conn-ef-type"></h3>
+            <h3 id="conn-down"></h3>
         </div>
 
         <!-- Wifi Access -->
         <div class="divider">
             <h2>Wifi Access</h2>
+            <button onclick="checkConnW()">Check Connection</button>
+            <h3 id="conn-type-2"></h3>
+            <h3 id="conn-ef-type-2"></h3>
+            <h3 id="conn-down-2"></h3>
         </div>
 
         <!-- Bluetooth Access -->

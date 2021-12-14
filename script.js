@@ -130,8 +130,55 @@ function renderResults(contacts) {
     });
 }
 
-//Face Detection
+// Cellular Access
+function checkConn(){
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    var type = connection.type
+    var eftype = connection.effectiveType
+    var downMax = connection.downlinkMax
 
+    console.log(type)
+    if(type == 'wifi'){
+        document.getElementById("conn-type").innerHTML = "No Cellular Connection"
+    } else{
+        document.getElementById("conn-type").innerHTML = "Connection type : " + type + ""
+        document.getElementById("conn-ef-type").innerHTML = "Connection effective type : " + eftype + ""
+        document.getElementById("conn-down").innerHTML = "Connection download speed : " + downMax + ""
+    }
+
+    function updateConnectionStatus(){
+        console.log("Connection type change from " + type + " to " + connection.type)
+        type = connection.type
+    }
+
+    connection.addEventListener('change', updateConnectionStatus)
+}
+
+// Wifi Acesss
+function checkConnW(){
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    var type = connection.type
+    var eftype = connection.effectiveType
+    var downMax = connection.downlinkMax
+
+    if(type == 'wifi'){
+        document.getElementById("conn-type-2").innerHTML = "Connection type : " + type + ""
+        document.getElementById("conn-ef-type-2").innerHTML = "Connection effective type : " + eftype + ""
+        document.getElementById("conn-down-2").innerHTML = "Connection download speed : " + downMax + ""
+    } else{
+        document.getElementById("conn-type-2").innerHTML = "No Wifi Connection"
+    }
+
+    
+    function updateConnectionStatus(){
+        console.log("Connection type change from " + type + " to " + connection.type)
+        type = connection.type
+    }
+
+    connection.addEventListener('change', updateConnectionStatus)
+}
+
+//Face Detection
 const video = document.getElementById('video')
 let model;
 const canvas = document.getElementById('canvas')
