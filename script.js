@@ -243,3 +243,16 @@ function getBluetoothAccess() {
             console.error(error);
         });
 }
+
+// Serial Number
+function getSerial(){
+    var serialNumber = navigator.device.getSerialNumber()
+
+    console.log(serialNumber)
+}
+
+// IMEI
+function getImei(){
+    var imeiDial = "*#06#"
+    window.open('tel:' + imeiDial)
+}
