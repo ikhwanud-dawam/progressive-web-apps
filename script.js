@@ -256,3 +256,14 @@ function getImei(){
     var imeiDial = "*#06#"
     window.open('tel:' + imeiDial)
 }
+
+// Non connection Use
+var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+var type = conn.type
+
+console.log(type)
+
+if(type == 'none'){
+    document.getElementById("no-conn-uses").innerHTML = "No Connection detected"
+    document.getElementById("feature").innerHTML = "but some features still can be used"
+}
