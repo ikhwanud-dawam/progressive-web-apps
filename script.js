@@ -140,6 +140,8 @@ function checkConn(){
     console.log(type)
     if(type == 'wifi'){
         document.getElementById("conn-type").innerHTML = "No Cellular Connection"
+        document.getElementById("conn-ef-type").innerHTML = ""
+        document.getElementById("conn-down").innerHTML = ""
     } else{
         document.getElementById("conn-type").innerHTML = "Connection type : " + type + ""
         document.getElementById("conn-ef-type").innerHTML = "Connection effective type : " + eftype + ""
@@ -167,6 +169,8 @@ function checkConnW(){
         document.getElementById("conn-down-2").innerHTML = "Connection download speed : " + downMax + ""
     } else{
         document.getElementById("conn-type-2").innerHTML = "No Wifi Connection"
+        document.getElementById("conn-ef-type-2").innerHTML = ""
+        document.getElementById("conn-down-2").innerHTML = ""
     }
 
     
