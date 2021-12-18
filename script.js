@@ -105,6 +105,7 @@ if(navigator.mediaDevices){
             mediaRec.start()
             console.log(mediaRec.state)
             console.log("recorder started")
+            stateRec.classList.replace('rec-stopped', 'rec-start')
             stateRec.innerHTML = "Recording ..."
         }
 
@@ -117,18 +118,21 @@ if(navigator.mediaDevices){
         }
 
         mediaRec.onstop = function(e){
-            // var clipName = prompt("Enter a name for your sound", "my unnamed clip")
+            var clipName = prompt("Enter a name for your sound", "my unnamed clip")
 
             var clipCont = document.createElement('article')
+            var clipLabel = document.createElement('p')
             var audio = document.createElement('audio')
             var playBut = document.createElement('button')
             var delBut = document.createElement('button')
 
             // audio.setAttribute('controls', '')
+            clipLabel.innerHTML = clipName
             delBut.innerHTML = "Delete audio"
             playBut.innerHTML = "Play audio"
 
             clipCont.appendChild(audio)
+            clipCont.appendChild(clipLabel)
             clipCont.appendChild(playBut)
             clipCont.appendChild(delBut)
             soundClips.appendChild(clipCont)
