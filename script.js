@@ -284,11 +284,29 @@ function accelerometer() {
         console.log("Acceleration along the Y-axis " + acl.y);
         console.log("Acceleration along the Z-axis " + acl.z);
 
-        document.getElementById("acl-x").innerHTML = "X-axis " + acl.x + ""
-        document.getElementById("acl-y").innerHTML = "Y-axis " + acl.y + ""
-        document.getElementById("acl-z").innerHTML = "Z-axis " + acl.z + ""
+        document.getElementById("acl-x").innerHTML = "Acl X-axis " + acl.x + ""
+        document.getElementById("acl-y").innerHTML = "Acl Y-axis " + acl.y + ""
+        document.getElementById("acl-z").innerHTML = "Acl Z-axis " + acl.z + ""
     })
     acl.start();
+}
+
+//Gyroscope
+function gyroscope() {
+    let gyroscope = new Gyroscope({
+        frequency: 60
+    });
+
+    gyroscope.addEventListener('reading', e => {
+        console.log("Angular velocity along the X-axis " + gyroscope.x);
+        console.log("Angular velocity along the Y-axis " + gyroscope.y);
+        console.log("Angular velocity along the Z-axis " + gyroscope.z);
+
+        document.getElementById("gyro-x").innerHTML = "Gyro X-axis " + acl.x + ""
+        document.getElementById("gyro-y").innerHTML = "Gyro Y-axis " + acl.y + ""
+        document.getElementById("gyro-z").innerHTML = "Gyro Z-axis " + acl.z + ""
+    });
+    gyroscope.start();
 }
 
 
