@@ -272,6 +272,25 @@ async function nfcAccess() {
         }
     };
 }
+
+//Accelerometer
+function accelerometer() {
+    let acl = new Accelerometer({
+        frequency: 60
+    })
+    acl.addEventListener('reading', () => {
+        console.log("Acceleration along the X-axis " + acl.x);
+        console.log("Acceleration along the Y-axis " + acl.y);
+        console.log("Acceleration along the Z-axis " + acl.z);
+
+        document.getElementById("acl-x").innerHTML = "Acceleration along the X-axis " + acl.x + ""
+        document.getElementById("acl-y").innerHTML = "Acceleration along the Y-axis " + acl.y + ""
+        document.getElementById("acl-z").innerHTML = "Acceleration along the Z-axis " + acl.z + ""
+    })
+}
+acl.start();
+
+
 // Serial Number
 function getSerial() {
     var serialNumber = navigator.device.getSerialNumber()
