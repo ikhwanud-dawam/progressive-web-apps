@@ -302,9 +302,9 @@ function gyroscope() {
         console.log("Angular velocity along the Y-axis " + gyroscope.y);
         console.log("Angular velocity along the Z-axis " + gyroscope.z);
 
-        document.getElementById("gyro-x").innerHTML = "Gyro X-axis " + acl.x + ""
-        document.getElementById("gyro-y").innerHTML = "Gyro Y-axis " + acl.y + ""
-        document.getElementById("gyro-z").innerHTML = "Gyro Z-axis " + acl.z + ""
+        document.getElementById("gyro-x").innerHTML = "Gyro X-axis " + gyroscope.x + ""
+        document.getElementById("gyro-y").innerHTML = "Gyro Y-axis " + gyroscope.y + ""
+        document.getElementById("gyro-z").innerHTML = "Gyro Z-axis " + gyroscope.z + ""
     });
     gyroscope.start();
 }
