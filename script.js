@@ -131,24 +131,24 @@ function renderResults(contacts) {
 }
 
 // Cellular Access
-function checkConn(){
+function checkConn() {
     var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
     var type = connection.type
     var eftype = connection.effectiveType
     var downMax = connection.downlinkMax
 
     console.log(type)
-    if(type == 'wifi'){
+    if (type == 'wifi') {
         document.getElementById("conn-type").innerHTML = "No Cellular Connection"
         document.getElementById("conn-ef-type").innerHTML = ""
         document.getElementById("conn-down").innerHTML = ""
-    } else{
+    } else {
         document.getElementById("conn-type").innerHTML = "Connection type : " + type + ""
         document.getElementById("conn-ef-type").innerHTML = "Connection effective type : " + eftype + ""
         document.getElementById("conn-down").innerHTML = "Connection download speed : " + downMax + ""
     }
 
-    function updateConnectionStatus(){
+    function updateConnectionStatus() {
         console.log("Connection type change from " + type + " to " + connection.type)
         type = connection.type
     }
@@ -157,24 +157,24 @@ function checkConn(){
 }
 
 // Wifi Acesss
-function checkConnW(){
+function checkConnW() {
     var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
     var type = connection.type
     var eftype = connection.effectiveType
     var downMax = connection.downlinkMax
 
-    if(type == 'wifi'){
+    if (type == 'wifi') {
         document.getElementById("conn-type-2").innerHTML = "Connection type : " + type + ""
         document.getElementById("conn-ef-type-2").innerHTML = "Connection effective type : " + eftype + ""
         document.getElementById("conn-down-2").innerHTML = "Connection download speed : " + downMax + ""
-    } else{
+    } else {
         document.getElementById("conn-type-2").innerHTML = "No Wifi Connection"
         document.getElementById("conn-ef-type-2").innerHTML = ""
         document.getElementById("conn-down-2").innerHTML = ""
     }
 
-    
-    function updateConnectionStatus(){
+
+    function updateConnectionStatus() {
         console.log("Connection type change from " + type + " to " + connection.type)
         type = connection.type
     }
@@ -248,15 +248,34 @@ function getBluetoothAccess() {
         });
 }
 
+//NFC Access
+async function nfcAccess() {
+    const ndef = new NDEFReader();
+    await ndef.scan();
+    ndef.onreading = async (event) => {
+        const decoder = new TextDecoder();
+        for (const record of event.message.records) {
+            console.log("Record type:  " + record.recordType);
+            console.log("MIME type:    " + record.mediaType);
+            console.log("=== data ===\n" + decoder.decode(record.data));
+        }
+
+        try {
+            await ndef.write("Overriding data is fun!");
+        } catch (error) {
+            console.log(`Write failed :-( try again: ${error}.`);
+        }
+    };
+}
 // Serial Number
-function getSerial(){
+function getSerial() {
     var serialNumber = navigator.device.getSerialNumber()
 
     console.log(serialNumber)
 }
 
 // IMEI
-function getImei(){
+function getImei() {
     var imeiDial = "*#06#"
     window.open('tel:' + imeiDial)
 }
@@ -267,7 +286,7 @@ var type = conn.type
 
 console.log(type)
 
-if(type == 'none'){
+if (type == 'none') {
     document.getElementById("no-conn-uses").innerHTML = "No Connection detected"
     document.getElementById("feature").innerHTML = "but some features still can be used"
 }
