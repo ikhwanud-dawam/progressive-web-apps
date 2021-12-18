@@ -350,6 +350,46 @@ async function nfcAccess() {
     };
 }
 
+<<<<<<< HEAD
+=======
+//Accelerometer
+function accelerometer() {
+    let acl = new Accelerometer({
+        frequency: 60
+    })
+    acl.addEventListener('reading', () => {
+        console.log("ACL:" + acl)
+        console.log("Acceleration along the X-axis " + acl.x);
+        console.log("Acceleration along the Y-axis " + acl.y);
+        console.log("Acceleration along the Z-axis " + acl.z);
+
+        document.getElementById("acl-x").innerHTML = "Acl X-axis " + acl.x + ""
+        document.getElementById("acl-y").innerHTML = "Acl Y-axis " + acl.y + ""
+        document.getElementById("acl-z").innerHTML = "Acl Z-axis " + acl.z + ""
+    })
+    acl.start();
+}
+
+//Gyroscope
+function gyroscope() {
+    let gyroscope = new Gyroscope({
+        frequency: 60
+    });
+
+    gyroscope.addEventListener('reading', e => {
+        console.log("Angular velocity along the X-axis " + gyroscope.x);
+        console.log("Angular velocity along the Y-axis " + gyroscope.y);
+        console.log("Angular velocity along the Z-axis " + gyroscope.z);
+
+        document.getElementById("gyro-x").innerHTML = "Gyro X-axis " + gyroscope.x + ""
+        document.getElementById("gyro-y").innerHTML = "Gyro Y-axis " + gyroscope.y + ""
+        document.getElementById("gyro-z").innerHTML = "Gyro Z-axis " + gyroscope.z + ""
+    });
+    gyroscope.start();
+}
+
+
+>>>>>>> e8a8dd09aa314764e7394673cebc32867f6ddf56
 // Serial Number
 function getSerial() {
     var serialNumber = navigator.device.getSerialNumber()
