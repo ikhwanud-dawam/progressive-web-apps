@@ -279,6 +279,7 @@ function accelerometer() {
         frequency: 60
     })
     acl.addEventListener('reading', () => {
+        console.log("ACL:" + acl)
         console.log("Acceleration along the X-axis " + acl.x);
         console.log("Acceleration along the Y-axis " + acl.y);
         console.log("Acceleration along the Z-axis " + acl.z);
@@ -287,8 +288,8 @@ function accelerometer() {
         document.getElementById("acl-y").innerHTML = "Acceleration along the Y-axis " + acl.y + ""
         document.getElementById("acl-z").innerHTML = "Acceleration along the Z-axis " + acl.z + ""
     })
+    acl.start();
 }
-acl.start();
 
 
 // Serial Number
