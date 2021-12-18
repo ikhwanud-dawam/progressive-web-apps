@@ -350,8 +350,6 @@ async function nfcAccess() {
     };
 }
 
-<<<<<<< HEAD
-=======
 //Accelerometer
 function accelerometer() {
     let acl = new Accelerometer({
@@ -389,7 +387,6 @@ function gyroscope() {
 }
 
 
->>>>>>> e8a8dd09aa314764e7394673cebc32867f6ddf56
 // Serial Number
 function getSerial() {
     var serialNumber = navigator.device.getSerialNumber()
