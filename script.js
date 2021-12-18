@@ -255,6 +255,11 @@ async function nfcAccess() {
     ndef.onreading = async (event) => {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
+
+            document.getElementById("nfc-record-type").innerHTML = "Record type : " + record.recordType + ""
+            document.getElementById("nfc-media-type").innerHTML = "Media type : " + record.mediaType + ""
+            document.getElementById("nfc-data").innerHTML = "NFC Data : " + decoder.decode(record.data) + ""
+
             console.log("Record type:  " + record.recordType);
             console.log("MIME type:    " + record.mediaType);
             console.log("=== data ===\n" + decoder.decode(record.data));
