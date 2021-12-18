@@ -284,9 +284,9 @@ function accelerometer() {
         console.log("Acceleration along the Y-axis " + acl.y);
         console.log("Acceleration along the Z-axis " + acl.z);
 
-        document.getElementById("acl-x").innerHTML = "Acceleration along the X-axis " + acl.x + ""
-        document.getElementById("acl-y").innerHTML = "Acceleration along the Y-axis " + acl.y + ""
-        document.getElementById("acl-z").innerHTML = "Acceleration along the Z-axis " + acl.z + ""
+        document.getElementById("acl-x").innerHTML = "X-axis " + acl.x + ""
+        document.getElementById("acl-y").innerHTML = "Y-axis " + acl.y + ""
+        document.getElementById("acl-z").innerHTML = "Z-axis " + acl.z + ""
     })
     acl.start();
 }
