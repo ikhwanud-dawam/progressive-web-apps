@@ -126,7 +126,6 @@ if(navigator.mediaDevices){
             var playBut = document.createElement('button')
             var delBut = document.createElement('button')
 
-            // audio.setAttribute('controls', '')
             clipLabel.innerHTML = clipName
             delBut.innerHTML = "Delete audio"
             playBut.innerHTML = "Play audio"
@@ -136,8 +135,6 @@ if(navigator.mediaDevices){
             clipCont.appendChild(playBut)
             clipCont.appendChild(delBut)
             soundClips.appendChild(clipCont)
-
-            // audio.controls = true
 
             var blob = new Blob(chunks, {'type' : 'audio/ogg; codecs=opus'})
             chunks = []
