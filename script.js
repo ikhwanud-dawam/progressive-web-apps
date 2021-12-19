@@ -83,6 +83,84 @@ function stopSound() {
     audio.pause()
 }
 
+// Microphone access
+const recBut = document.querySelector("#start-rec")
+const stopBut = document.querySelector("#stop-rec")
+const soundClips = document.querySelector(".sound-clips")
+
+stopBut.disabled = true
+
+if(navigator.mediaDevices){
+    console.log('getUserMedia supported')
+    var constraints = {audio: true}
+    var chunks = []
+
+    stopBut.disabled = false
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
+        var mediaRec = new MediaRecorder(stream);
+        var stateRec = document.querySelector('#rec-state')
+
+        recBut.onclick = function(){
+            mediaRec.start()
+            console.log(mediaRec.state)
+            console.log("recorder started")
+            stateRec.classList.replace('rec-stopped', 'rec-start')
+            stateRec.innerHTML = "Recording ..."
+        }
+
+        stopBut.onclick = function(){
+            mediaRec.stop()
+            console.log(mediaRec.state)
+            console.log("recored stopped")
+            stateRec.classList.replace('rec-start', 'rec-stopped')
+            stateRec.innerHTML = "Recorder stopped"
+        }
+
+        mediaRec.onstop = function(e){
+            var clipName = prompt("Enter a name for your sound", "my unnamed clip")
+
+            var clipCont = document.createElement('article')
+            var clipLabel = document.createElement('p')
+            var audio = document.createElement('audio')
+            var playBut = document.createElement('button')
+            var delBut = document.createElement('button')
+
+            clipLabel.innerHTML = clipName
+            delBut.innerHTML = "Delete audio"
+            playBut.innerHTML = "Play audio"
+
+            clipCont.appendChild(audio)
+            clipCont.appendChild(clipLabel)
+            clipCont.appendChild(playBut)
+            clipCont.appendChild(delBut)
+            soundClips.appendChild(clipCont)
+
+            var blob = new Blob(chunks, {'type' : 'audio/ogg; codecs=opus'})
+            chunks = []
+            var audioUrl = window.URL.createObjectURL(blob)
+            audio.src = audioUrl
+            
+            console.log("recorder stop")
+
+            playBut.onclick = function(){
+                audio.play()
+            }
+
+            delBut.onclick = function(e){
+                let evtTgt = e.target
+                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode)
+            }
+        }
+
+        mediaRec.ondataavailable = function(e){
+            chunks.push(e.data);
+        }
+    }).catch(function(err){
+        console.log('The following error ocured : ' + err)
+    })
+}
+
 // Contact Book
 const supported = ('contacts' in navigator || 'ContactManager' in window)
 const result = document.getElementsByClassName("result")

@@ -51,3 +51,11 @@ button {
 .divider {
   margin-top: 30px;
 }
+
+.rec-start {
+  color: red;
+}
+
+.rec-stopped {
+  color: white;
+}
