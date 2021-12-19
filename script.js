@@ -291,6 +291,24 @@ function accelerometer() {
     acl.start();
 }
 
+//Magnetometer
+function magnetometer() {
+    let magSensor = new Magnetometer({
+        frequency: 60
+    });
+
+    magSensor.addEventListener('reading', e => {
+        console.log("Magnetic field along the X-axis " + magSensor.x);
+        console.log("Magnetic field along the Y-axis " + magSensor.y);
+        console.log("Magnetic field along the Z-axis " + magSensor.z);
+
+        document.getElementById("mag-x").innerHTML = "Gyro X-axis " + magSensor.x + ""
+        document.getElementById("mag-y").innerHTML = "Gyro Y-axis " + magSensor.y + ""
+        document.getElementById("mag-z").innerHTML = "Gyro Z-axis " + magSensor.z + ""
+    });
+    magSensor.start();
+}
+
 //Gyroscope
 function gyroscope() {
     let gyroscope = new Gyroscope({
