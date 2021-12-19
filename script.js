@@ -90,18 +90,20 @@ const soundClips = document.querySelector(".sound-clips")
 
 stopBut.disabled = true
 
-if(navigator.mediaDevices){
+if (navigator.mediaDevices) {
     console.log('getUserMedia supported')
-    var constraints = {audio: true}
+    var constraints = {
+        audio: true
+    }
     var chunks = []
 
     stopBut.disabled = false
 
-    navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
+    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         var mediaRec = new MediaRecorder(stream);
         var stateRec = document.querySelector('#rec-state')
 
-        recBut.onclick = function(){
+        recBut.onclick = function () {
             mediaRec.start()
             console.log(mediaRec.state)
             console.log("recorder started")
@@ -109,7 +111,7 @@ if(navigator.mediaDevices){
             stateRec.innerHTML = "Recording ..."
         }
 
-        stopBut.onclick = function(){
+        stopBut.onclick = function () {
             mediaRec.stop()
             console.log(mediaRec.state)
             console.log("recored stopped")
@@ -117,7 +119,7 @@ if(navigator.mediaDevices){
             stateRec.innerHTML = "Recorder stopped"
         }
 
-        mediaRec.onstop = function(e){
+        mediaRec.onstop = function (e) {
             var clipName = prompt("Enter a name for your sound", "my unnamed clip")
 
             var clipCont = document.createElement('article')
@@ -136,27 +138,29 @@ if(navigator.mediaDevices){
             clipCont.appendChild(delBut)
             soundClips.appendChild(clipCont)
 
-            var blob = new Blob(chunks, {'type' : 'audio/ogg; codecs=opus'})
+            var blob = new Blob(chunks, {
+                'type': 'audio/ogg; codecs=opus'
+            })
             chunks = []
             var audioUrl = window.URL.createObjectURL(blob)
             audio.src = audioUrl
-            
+
             console.log("recorder stop")
 
-            playBut.onclick = function(){
+            playBut.onclick = function () {
                 audio.play()
             }
 
-            delBut.onclick = function(e){
+            delBut.onclick = function (e) {
                 let evtTgt = e.target
                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode)
             }
         }
 
-        mediaRec.ondataavailable = function(e){
+        mediaRec.ondataavailable = function (e) {
             chunks.push(e.data);
         }
-    }).catch(function(err){
+    }).catch(function (err) {
         console.log('The following error ocured : ' + err)
     })
 }
@@ -380,9 +384,9 @@ function magnetometer() {
         console.log("Magnetic field along the Y-axis " + magSensor.y);
         console.log("Magnetic field along the Z-axis " + magSensor.z);
 
-        document.getElementById("mag-x").innerHTML = "Gyro X-axis " + magSensor.x + ""
-        document.getElementById("mag-y").innerHTML = "Gyro Y-axis " + magSensor.y + ""
-        document.getElementById("mag-z").innerHTML = "Gyro Z-axis " + magSensor.z + ""
+        document.getElementById("mag-x").innerHTML = "Mag X-axis " + magSensor.x + ""
+        document.getElementById("mag-y").innerHTML = "Mag Y-axis " + magSensor.y + ""
+        document.getElementById("mag-z").innerHTML = "Mag Z-axis " + magSensor.z + ""
     });
     magSensor.start();
 }
