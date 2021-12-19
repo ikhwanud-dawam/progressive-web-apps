@@ -220,7 +220,11 @@ function checkConn() {
     var downMax = connection.downlinkMax
 
     console.log(type)
-    if (type == 'wifi' || type == undefined) {
+    if (type == 'wifi') {
+        document.getElementById("conn-type").innerHTML = "No Cellular Connection"
+        document.getElementById("conn-ef-type").innerHTML = ""
+        document.getElementById("conn-down").innerHTML = ""
+    } else if(type == 'none'){
         document.getElementById("conn-type").innerHTML = "No Cellular Connection"
         document.getElementById("conn-ef-type").innerHTML = ""
         document.getElementById("conn-down").innerHTML = ""
