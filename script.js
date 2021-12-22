@@ -334,6 +334,11 @@ function getBluetoothAccess() {
         });
 }
 
+// Infra Red
+function getIR(){
+    // NOT SUPPORTED
+}
+
 //NFC Access
 async function nfcAccess() {
     const ndef = new NDEFReader();
