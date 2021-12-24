@@ -17,3 +17,16 @@ self.addEventListener("fetch", function (event) {
         })
     );
 });
+
+self.addEventListener('notificationclick', (e) => {
+    var notification = e.notification
+    var primaryKey = notification.data.primaryKey
+    var action = e.action
+
+    if(action === 'close'){
+        notification.close()
+    } else{
+        clients.openWindow('https://ikhwanud-dawam.github.io/progressive-web-apps/')
+        notification.close()
+    }
+})

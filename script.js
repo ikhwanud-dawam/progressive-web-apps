@@ -46,12 +46,13 @@ function cameraOn() {
 // Notification Access
 const options = {
     body: 'Congratulation, notification success',
+    icon: 'images/pwa-512x512.png',
     vibrate: [100, 50, 100],
     data: {
         primaryKey: 1
     },
     actions: [{
-            action: 'go',
+            action: 'explore',
             title: 'Go to the site'
         },
         {
