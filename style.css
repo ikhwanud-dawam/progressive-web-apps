@@ -10,6 +10,8 @@ body {
   text-align: center;
   font-family: "Quicksand", sans-serif;
   letter-spacing: 1px;
+  color: white;
+  background-color: rgb(26, 26, 26);
 }
 
 header {
@@ -37,7 +39,7 @@ button {
   width: 150px;
   border: 2px solid #bfc0c0;
   margin: 20px 20px 20px 20px;
-  color: #bfc0c0;
+  color: #4e4e4e;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 0.8em;
