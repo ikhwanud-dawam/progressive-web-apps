@@ -287,8 +287,8 @@ function createCred(){
         // User:
         user: {
           id: new Uint8Array(16),
-          name: "alex.mueller@example.com",
-          displayName: "Alex Muller",
+          name: "ikhwanud-dawam.github.io",
+          displayName: "",
         },
       
         // This Relying Party will accept either an ES256 or RS256 credential, but
