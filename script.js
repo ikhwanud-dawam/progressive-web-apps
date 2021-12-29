@@ -337,9 +337,8 @@ function createCred(){
           getCredentialDefaultArgs.publicKey.allowCredentials = idList
           return navigator.credentials.get(getCredentialDefaultArgs)
         }).then(function (assertion){
+            document.getElementById('cred-info').innerHTML = "Credential Created"
             console.log('Assertion', assertion);
-            const registered = document.getElementById('register')
-            registered.innerHTML = 'Credential Created'
         }).catch(function (err) {
           console.log("Error", err);
         });
