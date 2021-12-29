@@ -333,10 +333,13 @@ function createCred(){
               transports: ['usb', 'nfc', 'ble'],
               type: 'public-key'
           }]
+
           getCredentialDefaultArgs.publicKey.allowCredentials = idList
           return navigator.credentials.get(getCredentialDefaultArgs)
         }).then(function (assertion){
             console.log('Assertion', assertion);
+            const registered = document.getElementById('register')
+            registered.innerHTML = 'Credential Created'
         }).catch(function (err) {
           console.log("Error", err);
         });
