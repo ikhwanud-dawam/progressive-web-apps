@@ -1,227 +1,225 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <!-- Responsive -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- Title -->
     <title>Progressive Web App</title>
 
     <!-- Meta Tags required for	Progressive Web App -->
-    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
-    <meta name="theme-color" content="black">
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+    <meta name="theme-color" content="black" />
 
     <!-- Manifest File link -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
 
     <!-- Style -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>Created by Nabil & Dawam</h1>
+      <h1>Created by Nabil & Dawam</h1>
     </header>
 
     <main class="container">
-        <!-- Geo Access -->
-        <div class="geolocator divider">
-            <h2>Geolocator</h2>
-            <p>Click the button to get your coordinates.</p>
-            <button onclick="getLocation()">Click me!</button>
-            <p id="geo"></p>
+      <!-- Geo Access -->
+      <div class="geolocator divider">
+        <h2>Geolocator</h2>
+        <p>Click the button to get your coordinates.</p>
+        <button onclick="getLocation()">Click me!</button>
+        <p id="geo"></p>
+      </div>
+
+      <!-- Camera Access -->
+      <div class="camera divider">
+        <h2>Camera Access</h2>
+        <video autoplay="true" id="cameraElement"></video>
+        <button onclick="cameraOn()">Camera On</button>
+      </div>
+
+      <!-- Get In App Notification -->
+      <div class="divider">
+        <h2>Notification</h2>
+        <button onclick="notifyInApp()">Notify Me in App !</button>
+      </div>
+
+      <!-- Special Notification -->
+      <div class="divider">
+        <h2>Special Notification</h2>
+        <button onclick="notifyMe()">Notify Me !</button>
+      </div>
+
+      <!-- Speaker -->
+      <div class="divider">
+        <h2>Speaker</h2>
+        <button onclick="playSound()">Play beat !</button>
+        <button onclick="stopSound()">Pause beat !</button>
+        <audio id="audio">
+          <source src="resources/audio.wav" type="audio/wav" />
+        </audio>
+      </div>
+
+      <!-- Microphone -->
+      <div class="divider">
+        <h2>Microphone</h2>
+        <h3 id="rec-state" class="rec-start"></h3>
+        <button id="start-rec">Record</button>
+        <button id="stop-rec">Stop record</button>
+        <br />
+        <section class="sound-clips"></section>
+      </div>
+
+      <!-- Contact Book -->
+      <div class="divider">
+        <h2>Contact Book</h2>
+        <div id="not-supp" hidden>
+          <h3 style="color: red">Not Supported</h3>
         </div>
-
-        <!-- Camera Access -->
-        <div class="camera divider">
-            <h2>Camera Access</h2>
-            <video autoplay="true" id="cameraElement"></video>
-            <button onclick="cameraOn()">Camera On</button>
+        <button onclick="selectContact()">Open Contact Book</button>
+        <div id="del" hidden>
+          <button id="btn-del" hidden>Delete Contact List</button>
         </div>
+        <div id="result"></div>
+      </div>
 
-        <!-- Notification -->
-        <div class="divider">
-            <h2>Notification</h2>
-            <button onclick="notifyMe()">Notify Me !</button>
-        </div>
+      <!-- Fingerprint -->
+      <div class="divider">
+        <h2>Fingerprint</h2>
+        <button onclick="createCred()">Create Credential</button>
+        <h3 id="cred-info"></h3>
+      </div>
 
-        <!-- Speaker -->
-        <div class="divider">
-            <h2>Speaker</h2>
-            <button onclick="playSound()">Play beat !</button>
-            <button onclick="stopSound()">Pause beat !</button>
-            <audio id="audio">
-                <source src="resources/audio.wav" type="audio/wav">
-            </audio>
-        </div>
+      <!-- Face Detection -->
+      <div class="divider face-detection">
+        <h2>Face Detection</h2>
+        <video id="video" autoplay style="display: none"></video>
+        <canvas id="canvas" width="300px" height="300px"></canvas>
+        <button onclick="setupCamera()">Activate</button>
+      </div>
 
-        <!-- Microphone -->
-        <div class="divider">
-            <h2>Microphone</h2>
-            <h3 id="rec-state" class="rec-start"></h3>
-            <button id="start-rec">Record</button>
-            <button id="stop-rec">Stop record</button>
-            <br>
-            <section class="sound-clips">
+      <!-- Cellular Access -->
+      <div class="divider">
+        <h2>Cellular Access</h2>
+        <button onclick="checkConn()">Check Connection</button>
+        <h3 id="conn-type"></h3>
+        <h3 id="conn-ef-type"></h3>
+        <h3 id="conn-down"></h3>
+      </div>
 
-            </section>
-        </div>
+      <!-- Wifi Access -->
+      <div class="divider">
+        <h2>Wifi Access</h2>
+        <button onclick="checkConnW()">Check Connection</button>
+        <h3 id="conn-type-2"></h3>
+        <h3 id="conn-ef-type-2"></h3>
+        <h3 id="conn-down-2"></h3>
+      </div>
 
-        <!-- Contact Book -->
-        <div class="divider">
-            <h2>Contact Book</h2>
-            <div id="not-supp" hidden>
-                <h3 style="color: red;">Not Supported</h3>
-            </div>
-            <button onclick="selectContact()">Open Contact Book</button>
-            <div id="del" hidden>
-                <button id="btn-del" hidden>Delete Contact List</button>
-            </div>
-            <div id="result"></div>
-        </div>
+      <!-- Bluetooth Access -->
+      <div class="divider">
+        <h2>Bluetooth Access</h2>
+        <button onclick="getBluetoothAccess()">Bluetooth On</button>
+      </div>
 
-        <!-- Fingerprint -->
-        <div class="divider">
-            <h2>Fingerprint</h2>
-            <button onclick="createCred()">Create Credential</button>
-            <h3 id="cred-info"></h3>
-        </div>
+      <!-- IR Access -->
+      <div class="divider">
+        <h2>Infrared Access</h2>
+        <h3 class="not-supp">This feature not supported in PWA</h3>
+        <button onclick="getIR()" disabled>Get Infrared Access</button>
+      </div>
 
-        <!-- Face Detection -->
-        <div class="divider face-detection">
-            <h2>Face Detection</h2>
-            <video id="video" autoplay style="display: none"></video>
-            <canvas id="canvas" width="300px" height="300px"></canvas>
-            <button onclick="setupCamera()">Activate</button>
-        </div>
+      <!-- NFC Access -->
+      <div class="divider">
+        <h2>NFC Access</h2>
+        <button onclick="nfcAccess()">Use NFC</button>
+        <h3 id="nfc-record-type"></h3>
+        <h3 id="nfc-media-type"></h3>
+        <h3 id="nfc-data"></h3>
+      </div>
 
-        <!-- Cellular Access -->
-        <div class="divider">
-            <h2>Cellular Access</h2>
-            <button onclick="checkConn()">Check Connection</button>
-            <h3 id="conn-type"></h3>
-            <h3 id="conn-ef-type"></h3>
-            <h3 id="conn-down"></h3>
-        </div>
+      <!-- Accelerometer Access -->
+      <div class="divider">
+        <h2>Accelerometer Access</h2>
+        <button onclick="accelerometer()">Accelerometer ON</button>
+        <h3 id="acl-x"></h3>
+        <h3 id="acl-y"></h3>
+        <h3 id="acl-z"></h3>
+      </div>
 
-        <!-- Wifi Access -->
-        <div class="divider">
-            <h2>Wifi Access</h2>
-            <button onclick="checkConnW()">Check Connection</button>
-            <h3 id="conn-type-2"></h3>
-            <h3 id="conn-ef-type-2"></h3>
-            <h3 id="conn-down-2"></h3>
-        </div>
+      <!-- Magnetometer Access -->
+      <div class="divider">
+        <h2>Magnetometer Access</h2>
+        <button onclick="magnetometer()">Magnetometer ON</button>
+        <h3 id="mag-x"></h3>
+        <h3 id="mag-y"></h3>
+        <h3 id="mag-z"></h3>
+      </div>
 
-        <!-- Bluetooth Access -->
-        <div class="divider">
-            <h2>Bluetooth Access</h2>
-            <button onclick="getBluetoothAccess()">Bluetooth On</button>
-        </div>
+      <!-- Gyroscope Access -->
+      <div class="divider">
+        <h2>Gyroscope Access</h2>
+        <button onclick="gyroscope()">Gyroscope ON</button>
+        <h3 id="gyro-x"></h3>
+        <h3 id="gyro-y"></h3>
+        <h3 id="gyro-z"></h3>
+      </div>
 
-        <!-- IR Access -->
-        <div class="divider">
-            <h2>Infrared Access</h2>
-            <h3 class="not-supp">This feature not supported in PWA</h3>
-            <button onclick="getIR()" disabled>Get Infrared Access</button>
-        </div>
+      <!-- Cellular Number Access -->
+      <div class="divider">
+        <h2>Cellular Number Access</h2>
+        <h3 class="not-supp">This feature not supported in PWA</h3>
+        <button onclick="getCellNum()" disabled>Get cellular number</button>
+      </div>
 
-        <!-- NFC Access -->
-        <div class="divider">
-            <h2>NFC Access</h2>
-            <button onclick="nfcAccess()">Use NFC</button>
-            <h3 id="nfc-record-type"></h3>
-            <h3 id="nfc-media-type"></h3>
-            <h3 id="nfc-data"></h3>
-        </div>
+      <!-- Device Serial Number Access -->
+      <div class="divider">
+        <h2>Device Serial Number Access</h2>
+        <h3 class="not-supp">This feature not supported in PWA</h3>
+        <button onclick="getSerial()" disabled>Get device serial number</button>
+      </div>
 
-        <!-- Accelerometer Access -->
-        <div class="divider">
-            <h2>Accelerometer Access</h2>
-            <button onclick="accelerometer()">Accelerometer ON</button>
-            <h3 id="acl-x"></h3>
-            <h3 id="acl-y"></h3>
-            <h3 id="acl-z"></h3>
-        </div>
+      <!-- Device IMEI Access -->
+      <div class="divider">
+        <h2>Device IMEI Access</h2>
+        <h3 class="not-supp">This feature not supported in PWA</h3>
+        <button onclick="getImei()" disabled>Get IMEI</button>
+      </div>
 
-        <!-- Magnetometer Access -->
-        <div class="divider">
-            <h2>Magnetometer Access</h2>
-            <button onclick="magnetometer()">Magnetometer ON</button>
-            <h3 id="mag-x"></h3>
-            <h3 id="mag-y"></h3>
-            <h3 id="mag-z"></h3>
-        </div>
+      <!-- Non-connection use -->
+      <div class="divider">
+        <h2>Non-connection use</h2>
+        <h3 id="no-conn-uses" style="color: red"></h3>
+        <h3 id="feature" style="color: rgb(0, 211, 0)"></h3>
+      </div>
 
-        <!-- Gyroscope Access -->
-        <div class="divider">
-            <h2>Gyroscope Access</h2>
-            <button onclick="gyroscope()">Gyroscope ON</button>
-            <h3 id="gyro-x"></h3>
-            <h3 id="gyro-y"></h3>
-            <h3 id="gyro-z"></h3>
-        </div>
-
-        <!-- Cellular Number Access -->
-        <div class="divider">
-            <h2>Cellular Number Access</h2>
-            <h3 class="not-supp">This feature not supported in PWA</h3>
-            <button onclick="getCellNum()" disabled>Get cellular number</button>
-        </div>
-
-        <!-- Device Serial Number Access -->
-        <div class="divider">
-            <h2>Device Serial Number Access</h2>
-            <h3 class="not-supp">This feature not supported in PWA</h3>
-            <button onclick="getSerial()" disabled>Get device serial number</button>
-        </div>
-
-        <!-- Device IMEI Access -->
-        <div class="divider">
-            <h2>Device IMEI Access</h2>
-            <h3 class="not-supp">This feature not supported in PWA</h3>
-            <button onclick="getImei()" disabled>Get IMEI</button>
-        </div>
-
-        <!-- Non-connection use -->
-        <div class="divider">
-            <h2>Non-connection use</h2>
-            <h3 id="no-conn-uses" style="color: red"></h3>
-            <h3 id="feature" style="color: rgb(0, 211, 0);"></h3>
-        </div>
-
-        <div class="divider"></div>
+      <div class="divider"></div>
     </main>
 
-    <footer>
-
-    </footer>
+    <footer></footer>
     <script src=" service-worker.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
     <script src="script.js"></script>
     <script>
-        // Script for Service Worker
-        window.addEventListener('load', () => {
-            registerSW()
-        });
+      // Script for Service Worker
+      window.addEventListener("load", () => {
+        registerSW();
+      });
 
-        // Register the Service Worker
-        async function registerSW() {
-            if ('serviceWorker' in navigator) {
-                try {
-                    await navigator
-                        .serviceWorker
-                        .register('service-worker.js');
-                } catch (e) {
-                    console.log('SW registration failed');
-                }
-            }
+      // Register the Service Worker
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("service-worker.js");
+          } catch (e) {
+            console.log("SW registration failed");
+          }
         }
+      }
     </script>
-</body>
-
+  </body>
 </html>
