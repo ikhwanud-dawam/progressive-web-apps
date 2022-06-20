@@ -423,31 +423,25 @@ function getIR() {
 
 //NFC Access
 async function nfcAccess() {
-    const ndef = new NDEFReader(); //Declaring NFC API
+    try {
+        const ndef = new NDEFReader();
+        await ndef.scan();
+        log("> Scan started");
 
-    ndef.scan().then(() => {
-        document.getElementById("nfc-info").innerHTML = "Scanning data";
-        ndef.onreadingerror = () => {
-            console.log("Cannot read data from the NFC tag. Try another one?");
-        };
-        ndef.onreading = async (event) => {
-            const decoder = new TextDecoder();
-            for (const record of event.message.records) {
+        ndef.addEventListener("readingerror", () => {
+            log("Argh! Cannot read data from the NFC tag. Try another one?");
+        });
 
-                document.getElementById("nfc-record-type").innerHTML = "Record type : " + record.recordType + ""
-                document.getElementById("nfc-media-type").innerHTML = "Media type : " + record.mediaType + ""
-                document.getElementById("nfc-data").innerHTML = "NFC Data : " + decoder.decode(record.data) + ""
-
-                console.log("Record type:  " + record.recordType);
-                console.log("MIME type:    " + record.mediaType);
-                console.log("=== data ===\n" + decoder.decode(record.data));
-            }
-        };
-
-    }).catch(error => {
-        console.log(`Error! Scan failed to start: ${error}.`);
-    });
-
+        ndef.addEventListener("reading", ({
+            message,
+            serialNumber
+        }) => {
+            log(`> Serial Number: ${serialNumber}`);
+            log(`> Records: (${message.records.length})`);
+        });
+    } catch (error) {
+        log("Argh! " + error);
+    }
 }
 
 //Accelerometer
